@@ -93,4 +93,7 @@
     <Build Include="StoredProcedures\DataGeneration.spDataMasterCustomers.sql" />
     <Build Include="StoredProcedures\DataGeneration.spAllDataPopulation.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="PostDeploymentScript\Script.PostDeploymentOnlineShop.sql" />
+  </ItemGroup>
 </Project>
