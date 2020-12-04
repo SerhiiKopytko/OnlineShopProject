@@ -61,6 +61,7 @@
     <Folder Include="Security\" />
     <Folder Include="Scripts\" />
     <Folder Include="StoredProcedures" />
+    <Folder Include="DataSCV" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\Master.Cities.sql" />
