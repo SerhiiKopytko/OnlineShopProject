@@ -1,2 +1,2 @@
-﻿USE OnlineShopProject
+﻿USE OnlineShop
 EXECUTE DataGeneration.spAllDataPopulation
