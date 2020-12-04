@@ -62,6 +62,7 @@
     <Folder Include="Scripts\" />
     <Folder Include="StoredProcedures" />
     <Folder Include="DataSCV" />
+    <Folder Include="PostDeploymentScript" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\Master.Cities.sql" />
