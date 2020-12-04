@@ -6,9 +6,8 @@ BEGIN
 		ALTER TABLE [Master].Orders
 		DROP CONSTRAINT FK_MasterOrdersCustomerID_MasterCustomersCustomerID
 
-			DELETE Master.Customers
-			DBCC CHECKIDENT('Master.Customers', RESEED, 0)
-
+			TRUNCATE TABLE Master.Customers
+			
 			BULK INSERT Master.Customers
 			FROM 'C:\Users\skopy\Desktop\My_SoftServe_files\Ramp up session\Task_21\OnlineShopProject\OnlineShopProject\DataSCV\DataMasterCustomer.csv'
 			WITH (FIRSTROW = 2,

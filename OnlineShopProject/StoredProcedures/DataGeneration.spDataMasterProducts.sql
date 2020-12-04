@@ -9,8 +9,7 @@ IF OBJECT_ID('[Master].Products', 'U') IS NOT NULL
 		ALTER TABLE [Master].OrderDetails
 		DROP CONSTRAINT FK_MasterOrderDetailsProductID_MasterProductsProductID
 		
-			DELETE [Master].Products
-			DBCC CHECKIDENT('[Master].Products', RESEED, 0)
+			TRUNCATE TABLE [Master].Products
 				INSERT INTO [Master].Products(ProductName, ProductTypeID, IsActive, ProductDescription)
 				  VALUES
 					('HP Pavilion', 1, 1, 'Description HP Pavilion'),

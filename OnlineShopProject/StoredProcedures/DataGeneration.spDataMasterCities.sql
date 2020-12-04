@@ -6,8 +6,7 @@ BEGIN
 		ALTER TABLE [Master].Customers
 		DROP CONSTRAINT FK_MasterCustomersCityID_MasterCitiesCityID
 
-			DELETE [Master].Cities
-			DBCC CHECKIDENT ('[Master].Cities', RESEED, 0)
+			TRUNCATE TABLE [Master].Cities
 			INSERT INTO [Master].Cities(CityName)
 			  VALUES
 				('Kyiv'),

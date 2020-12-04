@@ -6,9 +6,8 @@ BEGIN
 		ALTER TABLE [Master].Products
 		DROP CONSTRAINT FK_MasterProductsProductTypeID_MasterProductTypesProductTypeID
 
-			DELETE [Master].ProductTypes
-			DBCC CHECKIDENT ('[Master].ProductTypes', RESEED, 0)
-
+			TRUNCATE TABLE [Master].ProductTypes
+			
 			INSERT INTO [Master].ProductTypes(ProductTypeName, ProductTypeDescription)
 			VALUES
 				('Laptop', 'A laptop (also laptop computer), is a small, portable personal computer (PC)'),
