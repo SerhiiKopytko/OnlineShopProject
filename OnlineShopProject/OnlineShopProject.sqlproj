@@ -86,5 +86,10 @@
     <Build Include="Security\Config.sql" />
     <Build Include="Security\DataGeneration.sql" />
     <None Include="Scripts\ScriptsIgnoredOnImport.sql" />
+    <Build Include="StoredProcedures\DataGeneration.spDataMasterCities.sql" />
+    <Build Include="StoredProcedures\DataGeneration.spDataMasterProductTypes.sql" />
+    <Build Include="StoredProcedures\DataGeneration.spDataMasterProducts.sql" />
+    <Build Include="StoredProcedures\DataGeneration.spDataMasterCustomers.sql" />
+    <Build Include="StoredProcedures\DataGeneration.spAllDataPopulation.sql" />
   </ItemGroup>
 </Project>
