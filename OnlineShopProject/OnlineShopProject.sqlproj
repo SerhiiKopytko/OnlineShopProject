@@ -14,7 +14,7 @@
     <RootNamespace>OnlineShopProject</RootNamespace>
     <AssemblyName>OnlineShopProject</AssemblyName>
     <ModelCollation>1033, CI</ModelCollation>
-    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DefaultFileStructure>BySchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetLanguage>CS</TargetLanguage>
@@ -57,5 +57,44 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="Tables\" />
+    <Folder Include="Security\" />
+    <Folder Include="Scripts\" />
+    <Folder Include="StoredProcedures" />
+    <Folder Include="DataSCV" />
+    <Folder Include="PostDeploymentScript" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Tables\Master.Cities.sql" />
+    <Build Include="Tables\Master.Customers.sql" />
+    <Build Include="Tables\Master.Orders.sql" />
+    <Build Include="Tables\Master.ProductTypes.sql" />
+    <Build Include="Tables\Master.Products.sql" />
+    <Build Include="Tables\Master.OrderDetails.sql" />
+    <Build Include="Tables\Master.WareHouses.sql" />
+    <Build Include="Tables\Master.Employees.sql" />
+    <Build Include="Tables\Logs.Operations.sql" />
+    <Build Include="Tables\Logs.OperationsStatuses.sql" />
+    <Build Include="Tables\Logs.OperationRuns.sql" />
+    <Build Include="Tables\Logs.EventLogs.sql" />
+    <Build Include="Tables\Logs.ErrorLogs.sql" />
+    <Build Include="Tables\Master.VersionTypes.sql" />
+    <Build Include="Tables\Master.VersionConfigs.sql" />
+    <Build Include="Security\Staging.sql" />
+    <Build Include="Security\Master.sql" />
+    <Build Include="Security\Reporting.sql" />
+    <Build Include="Security\Logs.sql" />
+    <Build Include="Security\Config.sql" />
+    <Build Include="Security\DataGeneration.sql" />
+    <None Include="Scripts\ScriptsIgnoredOnImport.sql" />
+    <Build Include="StoredProcedures\DataGeneration.spDataMasterCities.sql" />
+    <Build Include="StoredProcedures\DataGeneration.spDataMasterProductTypes.sql" />
+    <Build Include="StoredProcedures\DataGeneration.spDataMasterProducts.sql" />
+    <Build Include="StoredProcedures\DataGeneration.spDataMasterCustomers.sql" />
+    <Build Include="StoredProcedures\DataGeneration.spAllDataPopulation.sql" />
+    <Build Include="StoredProcedures\DataGeneration.spCalendars.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="PostDeploymentScript\Script.PostDeploymentOnlineShop.sql" />
   </ItemGroup>
 </Project>
