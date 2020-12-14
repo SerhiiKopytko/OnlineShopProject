@@ -4,7 +4,6 @@
 	StartVersion INT NOT NULL,
 	EndVersion INT NOT NULL CONSTRAINT DF_MasterWareHousesEndVersion DEFAULT 999999999,
 	Price MONEY NOT NULL,
-	AvailibleProduct BIT DEFAULT 1,	
 	CONSTRAINT PK_MasterWareHousesWareHouseID PRIMARY KEY(WareHouseID),
 	CONSTRAINT FK_MasterWareHousesProductID_MasterProductsProductID FOREIGN KEY (ProductID) REFERENCES [Master].Products(ProductID)
 );

@@ -86,6 +86,7 @@
     <Build Include="Security\Config.sql" />
     <Build Include="Security\DataGeneration.sql" />
     <None Include="Scripts\ScriptsIgnoredOnImport.sql" />
+    <Build Include="Tables\Staging.NewDeliveries.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="OneRunScripts\OneRunScript.sql" />

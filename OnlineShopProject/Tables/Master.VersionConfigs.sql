@@ -1,10 +1,11 @@
-﻿CREATE TABLE [Master].VersionConfigs (
-	VersionID INT IDENTITY(1,1) NOT NULL,
-	CurrentVersion INT NULL,
+﻿--------------------------
+--Version tables
+-------------------------
+
+CREATE TABLE [Master].VersionConfigs (
+	VersionID INT IDENTITY(10000,10000) NOT NULL,
 	VersionDateTime DATETIME NULL,
-	VersionTypeID INT NULL,
 	OperationRunID INT NULL,
 	CONSTRAINT PK_MasterVersionConfigsVersionID PRIMARY KEY(VersionID),
-	CONSTRAINT FK_MasterVersionConfigsVersionTypeID_MasterVersionTypesVersionTypeID FOREIGN KEY (VersionTypeID) REFERENCES [Master].VersionTypes(VersionTypeID),
 	CONSTRAINT FK_MasterVersionConfigsOperationRunID_LogsOperationRunsOperationRunID FOREIGN KEY (OperationRunID) REFERENCES Logs.OperationRuns(OperationRunID)
 );
