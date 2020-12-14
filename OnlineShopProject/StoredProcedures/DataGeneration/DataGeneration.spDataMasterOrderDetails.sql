@@ -1,7 +1,7 @@
 ﻿CREATE PROCEDURE [DataGeneration].[spDataMasterOrderDetails]
 (
 @ProdFrom INT = 1,
-@ProdTo INT = 5
+@ProdTo INT = 3
 )
 AS
 

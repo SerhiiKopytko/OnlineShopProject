@@ -1,8 +1,8 @@
 ﻿CREATE PROCEDURE [DataGeneration].[spDataMasterOrders]
 (
 	@StartDate DATE = '20200101',
-	@EndDate DATE = '20201208',
-	@CusFrom INT = 30,
+	@EndDate DATE = '20201214',
+	@CusFrom INT = 10,
 	@CusTo INT = 100
 )
 AS
