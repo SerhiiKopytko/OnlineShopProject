@@ -62,6 +62,9 @@
     <Folder Include="Scripts\" />
     <Folder Include="DataSCV" />
     <Folder Include="OneRunScripts" />
+    <Folder Include="StoredProcedures" />
+    <Folder Include="StoredProcedures\DataGeneration" />
+    <Folder Include="StoredProcedures\OperationSP" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\Master.Cities.sql" />
@@ -87,6 +90,20 @@
     <Build Include="Security\DataGeneration.sql" />
     <None Include="Scripts\ScriptsIgnoredOnImport.sql" />
     <Build Include="Tables\Staging.NewDeliveries.sql" />
+    <Build Include="StoredProcedures\DataGeneration\DataGeneration.spCalendars.sql" />
+    <Build Include="StoredProcedures\DataGeneration\Logs.spDataOperationStatus.sql" />
+    <Build Include="StoredProcedures\DataGeneration\DataGeneration.spAllDataPopulationFirst.sql" />
+    <Build Include="StoredProcedures\OperationSP\Logs.spStartOperationRuns.sql" />
+    <Build Include="StoredProcedures\OperationSP\Logs.spCompletedOperationRuns.sql" />
+    <Build Include="StoredProcedures\OperationSP\Logs.spStartOperation.sql" />
+    <Build Include="StoredProcedures\OperationSP\Logs.spCompletedOperation.sql" />
+    <Build Include="StoredProcedures\DataGeneration\DataGeneration.spDataMasterCities.sql" />
+    <Build Include="StoredProcedures\DataGeneration\DataGeneration.spDataMasterCustomers.sql" />
+    <Build Include="StoredProcedures\DataGeneration\DataGeneration.spDataMasterProductTypes.sql" />
+    <Build Include="StoredProcedures\DataGeneration\DataGeneration.spDataMasterProducts.sql" />
+    <Build Include="StoredProcedures\DataGeneration\DataGeneration.spDataMasterOrders.sql" />
+    <Build Include="StoredProcedures\DataGeneration\DataGeneration.spDataMasterOrderDetails.sql" />
+    <Build Include="StoredProcedures\DataGeneration\DataGeneration.spAllDataPopulationSecond.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="OneRunScripts\OneRunScript.sql" />
