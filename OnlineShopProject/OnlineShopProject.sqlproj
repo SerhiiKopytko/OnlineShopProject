@@ -60,9 +60,7 @@
     <Folder Include="Tables\" />
     <Folder Include="Security\" />
     <Folder Include="Scripts\" />
-    <Folder Include="StoredProcedures" />
     <Folder Include="DataSCV" />
-    <Folder Include="PostDeploymentScript" />
     <Folder Include="OneRunScripts" />
   </ItemGroup>
   <ItemGroup>
@@ -88,15 +86,6 @@
     <Build Include="Security\Config.sql" />
     <Build Include="Security\DataGeneration.sql" />
     <None Include="Scripts\ScriptsIgnoredOnImport.sql" />
-    <Build Include="StoredProcedures\DataGeneration.spDataMasterCities.sql" />
-    <Build Include="StoredProcedures\DataGeneration.spDataMasterProductTypes.sql" />
-    <Build Include="StoredProcedures\DataGeneration.spDataMasterProducts.sql" />
-    <Build Include="StoredProcedures\DataGeneration.spDataMasterCustomers.sql" />
-    <Build Include="StoredProcedures\DataGeneration.spAllDataPopulation.sql" />
-    <Build Include="StoredProcedures\DataGeneration.spCalendars.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <PostDeploy Include="PostDeploymentScript\Script.PostDeploymentOnlineShop.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="OneRunScripts\OneRunScript.sql" />
