@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [Master].Products (
 	ProductID INT IDENTITY(1,1) NOT NULL,
-	ProductName VARCHAR(100) NOT NULL,
+	ProductName VARCHAR(250) NOT NULL,
 	ProductDescription VARCHAR(MAX) NOT NULL,
 	ProductTypeID INT NOT NULL,
 	IsActive BIT NOT NULL,
