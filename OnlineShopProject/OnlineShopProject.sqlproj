@@ -104,6 +104,13 @@
     <Build Include="StoredProcedures\DataGeneration\DataGeneration.spDataMasterOrders.sql" />
     <Build Include="StoredProcedures\DataGeneration\DataGeneration.spDataMasterOrderDetails.sql" />
     <Build Include="StoredProcedures\DataGeneration\DataGeneration.spAllDataPopulationSecond.sql" />
+    <Build Include="StoredProcedures\DataGeneration\DataGeneration.spClearLogs.sql" />
+    <Build Include="StoredProcedures\DataGeneration\DataGeneration.spRunOneBuying.sql" />
+    <Build Include="StoredProcedures\DataGeneration\DataGeneration.spRunOneRestocking.sql" />
+    <Build Include="StoredProcedures\Master.spBuyingProducts.sql" />
+    <Build Include="StoredProcedures\Master.spCreateNewBuyingVersion.sql" />
+    <Build Include="StoredProcedures\Master.spCreateNewLoadVersion.sql" />
+    <Build Include="StoredProcedures\Master.spLoadingWarehouse.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="OneRunScripts\OneRunScript.sql" />
