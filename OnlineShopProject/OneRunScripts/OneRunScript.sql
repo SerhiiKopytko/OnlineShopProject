@@ -1,2 +1,3 @@
 ﻿USE OnlineShop
-EXECUTE DataGeneration.spAllDataPopulation
+EXECUTE DataGeneration.spAllDataPopulationFirst
+EXECUTE DataGeneration.spAllDataPopulationSecond

@@ -3,13 +3,12 @@
 	OperationRunID INT NULL,
 	EventID INT NULL,
 	ErrortProcName VARCHAR(250) NULL,
+	ErrorDataTime DATETIME NULL,
 	ErrorLine INT,
-	ErrorMessage VARCHAR(MAX) NULL,
 	ErrorNumber INT NULL,
 	ErrorSeverity INT,
 	ErrorState VARCHAR(MAX) NULL,
-	ErrorParameter VARCHAR(250) NULL,
-	ErrorDataTime DATETIME NULL,
+	ErrorMessage VARCHAR(MAX) NULL,
 	CONSTRAINT PK_LogsErrorLogsErrorID PRIMARY KEY(ErrorID),
 	CONSTRAINT FK_LogsErrorLogsEventID_LogsEventLogsEventID FOREIGN KEY (EventID) REFERENCES Logs.EventLogs(EventID)
 );

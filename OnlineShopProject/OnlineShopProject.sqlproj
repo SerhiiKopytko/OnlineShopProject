@@ -62,6 +62,9 @@
     <Folder Include="Scripts\" />
     <Folder Include="DataSCV" />
     <Folder Include="OneRunScripts" />
+    <Folder Include="StoredProcedures" />
+    <Folder Include="StoredProcedures\DataGeneration" />
+    <Folder Include="StoredProcedures\OperationSP" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\Master.Cities.sql" />
@@ -86,6 +89,28 @@
     <Build Include="Security\Config.sql" />
     <Build Include="Security\DataGeneration.sql" />
     <None Include="Scripts\ScriptsIgnoredOnImport.sql" />
+    <Build Include="Tables\Staging.NewDeliveries.sql" />
+    <Build Include="StoredProcedures\DataGeneration\DataGeneration.spCalendars.sql" />
+    <Build Include="StoredProcedures\DataGeneration\Logs.spDataOperationStatus.sql" />
+    <Build Include="StoredProcedures\DataGeneration\DataGeneration.spAllDataPopulationFirst.sql" />
+    <Build Include="StoredProcedures\OperationSP\Logs.spStartOperationRuns.sql" />
+    <Build Include="StoredProcedures\OperationSP\Logs.spCompletedOperationRuns.sql" />
+    <Build Include="StoredProcedures\OperationSP\Logs.spStartOperation.sql" />
+    <Build Include="StoredProcedures\OperationSP\Logs.spCompletedOperation.sql" />
+    <Build Include="StoredProcedures\DataGeneration\DataGeneration.spDataMasterCities.sql" />
+    <Build Include="StoredProcedures\DataGeneration\DataGeneration.spDataMasterCustomers.sql" />
+    <Build Include="StoredProcedures\DataGeneration\DataGeneration.spDataMasterProductTypes.sql" />
+    <Build Include="StoredProcedures\DataGeneration\DataGeneration.spDataMasterProducts.sql" />
+    <Build Include="StoredProcedures\DataGeneration\DataGeneration.spDataMasterOrders.sql" />
+    <Build Include="StoredProcedures\DataGeneration\DataGeneration.spDataMasterOrderDetails.sql" />
+    <Build Include="StoredProcedures\DataGeneration\DataGeneration.spAllDataPopulationSecond.sql" />
+    <Build Include="StoredProcedures\DataGeneration\DataGeneration.spClearLogs.sql" />
+    <Build Include="StoredProcedures\DataGeneration\DataGeneration.spRunOneBuying.sql" />
+    <Build Include="StoredProcedures\DataGeneration\DataGeneration.spRunOneRestocking.sql" />
+    <Build Include="StoredProcedures\Master.spBuyingProducts.sql" />
+    <Build Include="StoredProcedures\Master.spCreateNewBuyingVersion.sql" />
+    <Build Include="StoredProcedures\Master.spCreateNewLoadVersion.sql" />
+    <Build Include="StoredProcedures\Master.spLoadingWarehouse.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="OneRunScripts\OneRunScript.sql" />
