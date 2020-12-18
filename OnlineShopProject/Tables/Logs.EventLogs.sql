@@ -4,7 +4,7 @@
 	[User] VARCHAR(250) CONSTRAINT DF_LogsEventLogsUser DEFAULT SUSER_NAME(),
 	EventDataTime DATETIME CONSTRAINT DF_LogsEventLogsEventStartTime DEFAULT CURRENT_TIMESTAMP,
 	EventStatusID INT NULL,
-	AffectedRows INT NULL,
+	AffectedRows INT CONSTRAINT DF_LogsEventLogsAffectedRows DEFAULT 0,
 	EventProcName VARCHAR(250) NULL,
 	EventMessage VARCHAR(MAX),
 	CONSTRAINT PK_LogsEventLogsEventID PRIMARY KEY(EventID),
