@@ -111,6 +111,7 @@
     <Build Include="StoredProcedures\Master.spCreateNewBuyingVersion.sql" />
     <Build Include="StoredProcedures\Master.spCreateNewLoadVersion.sql" />
     <Build Include="StoredProcedures\Master.spLoadingWarehouse.sql" />
+    <Build Include="Tables\Staging.NewOrders.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="OneRunScripts\OneRunScript.sql" />
