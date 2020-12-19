@@ -23,3 +23,4 @@ BEGIN
 		-- Completing 'OperationRuns' process:
 		EXECUTE Logs.spCompletedOperationRuns
 END;
+
