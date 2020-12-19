@@ -17,7 +17,6 @@ BEGIN
 		
 		    SET @CurrentOrderID = IDENT_CURRENT('Master.Orders')
 
-			EXECUTE Master.spCreateNewBuyingVersion @CurrentOrderID -- Create a new version for new buying
 			EXECUTE Master.spBuyingProducts @CurrentOrderID
 
 
