@@ -123,9 +123,11 @@
     <Build Include="StoredProcedures\Staging.spCreateNewDelivery.sql" />
     <Build Include="StoredProcedures\Staging.spNewDeliveryIntoStagingTable.sql" />
     <Build Include="StoredProcedures\Master.spRestockingNewDeliveryProcess.sql" />
+    <Build Include="StoredProcedures\Master.spRestockingNewDeliveryProcessWithSSIS.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="OneRunScripts\OneRunScript.sql" />
     <None Include="OneRunScripts\RunNewDeliveryProcess.sql" />
+    <None Include="OneRunScripts\RunNewBuyingProcess.sql" />
   </ItemGroup>
 </Project>
