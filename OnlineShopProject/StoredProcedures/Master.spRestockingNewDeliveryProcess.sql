@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [Master].[RestockingNewDeliveryProcess]
+﻿CREATE PROCEDURE [Master].[spRestockingNewDeliveryProcess]
 
 AS
 
