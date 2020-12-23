@@ -10,6 +10,10 @@
 --Version tables
 -------------------------
 
+--------------------------
+--Version tables
+-------------------------
+
 CREATE TABLE [Master].VersionConfigs (
 	VersionID INT IDENTITY(10000,10000) NOT NULL,
 	VersionDateTime DATETIME NULL,
