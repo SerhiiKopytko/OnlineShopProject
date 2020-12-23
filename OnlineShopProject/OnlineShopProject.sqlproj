@@ -128,5 +128,6 @@
   <ItemGroup>
     <None Include="OneRunScripts\OneRunScript.sql" />
     <None Include="OneRunScripts\RunNewDeliveryProcess.sql" />
+    <None Include="OneRunScripts\RunNewBuyingProcess.sql" />
   </ItemGroup>
 </Project>
