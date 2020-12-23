@@ -120,6 +120,8 @@
     <Build Include="StoredProcedures\Staging.spNewOrderIntoStagingTable.sql" />
     <Build Include="StoredProcedures\Master.spLoadNewOrder.sql" />
     <Build Include="StoredProcedures\Master.spBuyingNewOrderProcess.sql" />
+    <Build Include="StoredProcedures\Staging.spCreateNewDelivery.sql" />
+    <Build Include="StoredProcedures\Staging.spNewDeliveryIntoStagingTable.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="OneRunScripts\OneRunScript.sql" />
