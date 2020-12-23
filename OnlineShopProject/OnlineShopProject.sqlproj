@@ -65,6 +65,7 @@
     <Folder Include="StoredProcedures" />
     <Folder Include="StoredProcedures\DataGeneration" />
     <Folder Include="StoredProcedures\OperationSP" />
+    <Folder Include="Views" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\Master.Cities.sql" />
@@ -111,6 +112,14 @@
     <Build Include="StoredProcedures\Master.spCreateNewBuyingVersion.sql" />
     <Build Include="StoredProcedures\Master.spCreateNewLoadVersion.sql" />
     <Build Include="StoredProcedures\Master.spLoadingWarehouse.sql" />
+    <Build Include="Tables\Staging.NewOrders.sql" />
+    <Build Include="Views\Logs.vwEventLogs.sql" />
+    <Build Include="Views\Logs.vwOperationRuns.sql" />
+    <Build Include="Views\Master.vwAvailableProd.sql" />
+    <Build Include="StoredProcedures\Staging.spCreateNewOrder.sql" />
+    <Build Include="StoredProcedures\Staging.spNewOrderIntoStagingTable.sql" />
+    <Build Include="StoredProcedures\Master.spLoadNewOrder.sql" />
+    <Build Include="StoredProcedures\Master.spBuyingNewOrderProcess.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="OneRunScripts\OneRunScript.sql" />

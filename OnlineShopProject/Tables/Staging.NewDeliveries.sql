@@ -4,11 +4,17 @@
 --------------------------
 --Staging Schema
 -------------------------
+--------------------------
+--Staging Schema
+-------------------------
+--------------------------
+--Staging Schema
+-------------------------
 CREATE TABLE Staging.NewDeliveries(
 	DeliveryID INT NOT NULL IDENTITY(1,1),
 	ProductID INT,
 	PricePerUnit SMALLMONEY,
-	DeliveryDate DATE,
+	DeliveryDate DATETIME,
 	CONSTRAINT PK_StagingNewDeliveriesDeliveryID PRIMARY KEY (DeliveryID)
 );
 

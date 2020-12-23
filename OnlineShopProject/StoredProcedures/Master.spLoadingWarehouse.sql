@@ -17,8 +17,5 @@ DECLARE
 
 			SET @RowCount = (SELECT @@ROWCOUNT)  -- Calculate and save how many rows were populeted
 
-			
-	TRUNCATE TABLE Staging.NewDeliveries
-	
   EXECUTE Logs.spCompletedOperation @EventProcName, @RowCount	-- Compliting operation process
 END;
