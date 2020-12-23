@@ -26,7 +26,7 @@ DECLARE
 	@bcp_cmd VARCHAR(1000),
 	@exe_path VARCHAR(200) = 'call "C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\BCP.EXE"',
 	@FromTable VARCHAR(250) = ' OnlineShop.##NewDelivery',
-	@Path VARCHAR(350) = ' C:\TempSSIS\',
+	@Path VARCHAR(350) = ' C:\TempSSIS\Delivery\',
 	@FileName VARCHAR(150) = 'NewDelivery.txt',
 	@bcpParam VARCHAR(50) = ' -T -c',
 	@ServerName VARCHAR(150) = ' -S LV575',
