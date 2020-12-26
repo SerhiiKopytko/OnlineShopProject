@@ -1,4 +1,5 @@
 ﻿CREATE PROCEDURE [Master].[spBuyingNewOrderProcess]
+
 AS
 
 BEGIN
@@ -13,7 +14,7 @@ BEGIN
 		-- Creating new OperationRunID and creating new record in 'Logs.OperationEvent' table
 		EXECUTE Logs.spStartOperationRuns 
 
-			EXECUTE Master.spLoadNewOrder                  -- Load new order into '[Master].[Orders] and [Master].[OrderDetails]' tables
+			EXECUTE Master.spLoadNewOrder  -- Load new order into '[Master].[Orders] and [Master].[OrderDetails]' tables
 		
 		    SET @CurrentOrderID = IDENT_CURRENT('Master.Orders')
 

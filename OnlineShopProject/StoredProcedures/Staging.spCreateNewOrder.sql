@@ -11,21 +11,20 @@ BEGIN
 		@RandCuctomer INT,
 		@CurrentOrderID INT,
 		@RandProd INT,
+
 		@CurrentDateTime DATETIME,
-
-		@prevAdvancedOptions INT, -- variables for managing xp_cmdshell Server configuration option
-		@prevXpCmdshell INT,       --variables for managing xp_cmdshell Server configuration option
-
-		@bcp_cmd VARCHAR(1000),
-		@exe_path VARCHAR(200) = 'call "C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\BCP.EXE"',
-		@FromTable VARCHAR(250) = ' OnlineShop.##NewOrder',
-		@Path VARCHAR(350) = ' C:\TempSSIS\Orders\',
-		@FileName VARCHAR(150) = 'NewOrder',
-		@FileExtension VARCHAR(50) = '.txt',
-		@bcpParam VARCHAR(50) = ' -T -c',
-		@ServerName VARCHAR(150) = ' -S LV575',
-		@UserName VARCHAR(150) = ' -U SOFTSERVE\skopy ',
-		@Delimetr VARCHAR(10) = ' -t ","'
+		@CreateDateTime DATETIME,
+		
+		@exe_path VARCHAR(200),
+		@DBTable VARCHAR(250),
+		@Path VARCHAR(350),
+		@FileName VARCHAR(150),
+		@FileExtension VARCHAR(50),
+		@bcpOperation VARCHAR(50),
+		@bcpParam VARCHAR(50),
+		@ServerName VARCHAR(150),
+		@UserName VARCHAR(150),
+		@Delimetr VARCHAR(10)
 
 		DROP TABLE IF EXISTS ##NewOrder 
 		CREATE TABLE ##NewOrder 
@@ -54,49 +53,20 @@ BEGIN
 --------------------------------------------------------------
 -- BCP process for loading new delivery from temporary table to txt file.
 
-	--xp_cmdshell Server configuration option
-			
-		SELECT @prevAdvancedOptions = cast(value_in_use as int) from sys.configurations where name = 'show advanced options'
-		SELECT @prevXpCmdshell = cast(value_in_use as int) from sys.configurations where name = 'xp_cmdshell'
+	-- BCP process for loading new delivery from temporary table to txt file.
 
-			IF (@prevAdvancedOptions = 0)
-			BEGIN
-				exec sp_configure 'show advanced options', 1
-				reconfigure
-			END
-
-			IF (@prevXpCmdshell = 0)
-			BEGIN
-				exec sp_configure 'xp_cmdshell', 1
-				reconfigure
-			END
-
-
-	--	 start main bcp block 
-
-	--		SET @FileFullName = @FileName + '_' + Convert(VARCHAR, @CurrentDateTime, 103) + '_' + CAST( CAST(@CurrentDateTime AS TIME(0)) AS VARCHAR) + @FileExtension
- 
-			SET @bcp_cmd = @exe_path + @FromTable + ' out' + @Path + @FileName + @FileExtension + @bcpParam + @ServerName + @UserName + @Delimetr;
-			EXEC master..xp_cmdshell @bcp_cmd;
-
-	--	 end main bcp block 
-
-
-			SELECT @prevAdvancedOptions = cast(value_in_use as int) from sys.configurations where name = 'show advanced options'
-			SELECT @prevXpCmdshell = cast(value_in_use as int) from sys.configurations where name = 'xp_cmdshell'
-
-
-			IF (@prevXpCmdshell = 1)
-			BEGIN
-				exec sp_configure 'xp_cmdshell', 0
-				reconfigure
-			END
-
-			IF (@prevAdvancedOptions = 1)
-			BEGIN
-				exec sp_configure 'show advanced options', 0
-				reconfigure
-			END
+       EXECUTE Staging.spLoadingDataBCP 
+							@CreateDateTime = @CurrentDateTime,
+							@exe_path = 'call "C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\BCP.EXE"',
+							@DBTable = ' OnlineShop.##NewOrder',
+							@Path = ' C:\TempSSIS\Orders\',
+							@FileName = 'NewOrder',
+							@FileExtension = '.txt',
+							@bcpOperation = ' out',
+							@bcpParam = ' -T -c',
+							@ServerName = ' -S LV575',
+							@UserName = ' -U SOFTSERVE\skopy ',
+							@Delimetr = ' -t ","'
 --------------------------------------------------------------
 	
 	END TRY
