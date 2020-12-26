@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [Master].[spBuyingNewOrderProcess]
+﻿CREATE PROCEDURE [Master].[spBuyingNewOrderProcessWithSSIS]
 
 AS
 
@@ -6,9 +6,6 @@ BEGIN
 
 	DECLARE
 	  @CurrentOrderID INT
-
-		EXECUTE [Staging].[spCreateNewOrder]           -- Generate new random order
-		EXECUTE [Staging].[spNewOrderIntoStagingTable] -- Insert new random order into '[Staging].[NewOrders]' table
 
 		-- Starting 'OperationRuns' process:
 		-- Creating new OperationRunID and creating new record in 'Logs.OperationEvent' table
@@ -24,4 +21,3 @@ BEGIN
 		-- Completing 'OperationRuns' process:
 		EXECUTE Logs.spCompletedOperationRuns
 END;
-

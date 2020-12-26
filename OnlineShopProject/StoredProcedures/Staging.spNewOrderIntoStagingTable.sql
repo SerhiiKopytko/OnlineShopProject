@@ -1,4 +1,5 @@
 ﻿CREATE PROCEDURE [Staging].[spNewOrderIntoStagingTable]
+
 AS
 
 BEGIN
