@@ -2,11 +2,14 @@
 AS
 BEGIN
 
+DECLARE
+@CurrentOperation INT = 1 --Initial filling of the DB
+
 EXECUTE DataGeneration.spClearLogs -- Clear 'Log' schema and Warehouse 
 
 -- Starting 'OperationRuns' process:
   -- Creating new OperationRunID and creating new record in 'Logs.OperationEvent' table
-  EXECUTE Logs.spStartOperationRuns 
+  EXECUTE Logs.spStartOperationRuns @CurrentOperation
 
 -- Starting next events related to run one data population
   EXECUTE DataGeneration.spDataMasterCities
