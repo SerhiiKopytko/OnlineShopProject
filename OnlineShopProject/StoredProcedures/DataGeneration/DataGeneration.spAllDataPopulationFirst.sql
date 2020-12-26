@@ -4,6 +4,7 @@ BEGIN
 
 --Populating all data necessary befor logging processes.
 	EXECUTE Logs.spDataOperationStatus
+	EXECUTE Logs.spDataOperation
 	EXECUTE DataGeneration.spCalendars -- sp has two parameters: 'start date' and period in years (by default is '19700101', 70)
 
 END;
