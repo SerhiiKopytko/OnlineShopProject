@@ -13,11 +13,12 @@ DECLARE
 @CurrentWHid INT,
 
 @EventProcName VARCHAR(250) = OBJECT_SCHEMA_NAME(@@PROCID)+'.'+OBJECT_NAME(@@PROCID),
-@RowCount INT = 0
+@RowCount INT = 0,
+@CurrentVersion INT
 
 EXECUTE Logs.spStartOperation @EventProcName -- logging start operation process
 
-EXECUTE [Master].spCreateNewBuyingVersion @OrderID -- Create a new Version for the current order
+EXECUTE @CurrentVersion = [Master].spCreateNewBuyingVersion @OrderID -- Create a new Version for the current order
 
 -- SELECT 'OrderDetailID' for chosen @OrderID
 	SELECT @StartOrderDetailID = MIN(od.OrderDetailID), 
@@ -54,8 +55,8 @@ EXECUTE [Master].spCreateNewBuyingVersion @OrderID -- Create a new Version for t
 
 			  SET @CurrentOrderDetailID +=1 
 			END
-
-	EXECUTE Logs.spCompletedOperation @EventProcName, @RowCount	-- Compliting operation process
+	
+	EXECUTE Logs.spCompletedOperation @EventProcName, @RowCount, @CurrentVersion	-- Compliting operation process
 
 	RETURN @RowCount
 END;

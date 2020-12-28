@@ -1,4 +1,7 @@
 ﻿CREATE PROCEDURE [Master].[spLoadingWarehouse]
+(
+@CurrentVersion INT = NULL
+)
 AS
 
 BEGIN
@@ -12,10 +15,10 @@ DECLARE
 	INSERT INTO [Master].WareHouses(ProductID, Price, StartVersion)
 		SELECT ProductID, 
 			   PricePerUnit, 
-			   IDENT_CURRENT('[Master].VersionConfigs') AS StartVersion
+			   @CurrentVersion AS StartVersion
 			FROM Staging.NewDeliveries
 
 			SET @RowCount = (SELECT @@ROWCOUNT)  -- Calculate and save how many rows were populeted
 
-  EXECUTE Logs.spCompletedOperation @EventProcName, @RowCount	-- Compliting operation process
+  EXECUTE Logs.spCompletedOperation @EventProcName, @RowCount, @CurrentVersion	-- Compliting operation process
 END;

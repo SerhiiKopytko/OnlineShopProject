@@ -20,6 +20,7 @@ INSERT INTO [Master].VersionConfigs (VersionDateTime, OperationRunID)
 		SET @RowCount = (SELECT @@ROWCOUNT)  -- Calculate and save how many rows were populeted
 		SET @NewVersion = IDENT_CURRENT('[Master].VersionConfigs')
  EXECUTE Logs.spCompletedOperation @EventProcName, @RowCount, @NewVersion	-- Compliting operation process
+ RETURN @NewVersion
 
 END;
 
