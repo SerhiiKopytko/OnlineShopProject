@@ -17,7 +17,7 @@ DECLARE
 
 EXECUTE Logs.spStartOperation @EventProcName -- logging start operation process
 
-EXECUTE Master.spCreateNewBuyingVersion @OrderID -- Create a new Version for the current order
+EXECUTE [Master].spCreateNewBuyingVersion @OrderID -- Create a new Version for the current order
 
 -- SELECT 'OrderDetailID' for chosen @OrderID
 	SELECT @StartOrderDetailID = MIN(od.OrderDetailID), 
