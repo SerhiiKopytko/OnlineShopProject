@@ -5,6 +5,7 @@
 	EventDataTime DATETIME CONSTRAINT DF_LogsEventLogsEventStartTime DEFAULT CURRENT_TIMESTAMP,
 	EventStatusID INT NULL,
 	AffectedRows INT CONSTRAINT DF_LogsEventLogsAffectedRows DEFAULT 0,
+	Parameter VARCHAR(250) NULL,
 	EventProcName VARCHAR(250) NULL,
 	EventMessage VARCHAR(MAX),
 	CONSTRAINT PK_LogsEventLogsEventID PRIMARY KEY(EventID),
