@@ -4,7 +4,7 @@ AS
 BEGIN
 	BEGIN TRY
 	  
-	  BEGIN TRANSACTION
+	 
 
 		DECLARE
 		  @NewOrderID INT,
@@ -38,7 +38,7 @@ BEGIN
 
 	EXECUTE Logs.spCompletedOperation @EventProcName, @RowCount	-- Compliting operation process
 
-	  COMMIT TRANSACTION
+	
 	END TRY
 
 	BEGIN CATCH

@@ -7,6 +7,7 @@ SELECT e.EventID,
 	   s.StatusName,
 	   e.AffectedRows,
 	   e.EventProcName,
+	   e.Parameter,
 	   e.EventMessage,
 	   e.EventDataTime,
 	   e.[User]
