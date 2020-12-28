@@ -1,6 +1,8 @@
 ﻿CREATE VIEW [Logs].[vwOperationRuns]
-	AS 
-	SELECT r.OperationRunID,
+AS
+
+SELECT r.OperationRunID,
+	   r.OperationID,
 	   r.ManagerID,
 	   s.StatusName,
 	   r.OperationRunDescription,

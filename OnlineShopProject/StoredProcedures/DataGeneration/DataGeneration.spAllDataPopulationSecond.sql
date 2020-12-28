@@ -2,11 +2,15 @@
 AS
 BEGIN
 
+DECLARE
+@CurrentOperation INT = 1, --Initial filling of the DB
+@CurrentVersion INT
+
 EXECUTE DataGeneration.spClearLogs -- Clear 'Log' schema and Warehouse 
 
 -- Starting 'OperationRuns' process:
   -- Creating new OperationRunID and creating new record in 'Logs.OperationEvent' table
-  EXECUTE Logs.spStartOperationRuns 
+  EXECUTE Logs.spStartOperationRuns @CurrentOperation
 
 -- Starting next events related to run one data population
   EXECUTE DataGeneration.spDataMasterCities
@@ -30,8 +34,8 @@ EXECUTE DataGeneration.spClearLogs -- Clear 'Log' schema and Warehouse
 	 -- Populate 'Staging.NewDeliveries' table for all orders for RunOne script
   EXECUTE DataGeneration.spRunOneRestocking
 	
-  EXECUTE Master.spCreateNewLoadVersion -- Create a new version for new delivery
-  EXECUTE Master.spLoadingWarehouse     -- Load last delivery into warehouse
+  EXECUTE @CurrentVersion = Master.spCreateNewLoadVersion -- Create a new version for new delivery
+  EXECUTE Master.spLoadingWarehouse @CurrentVersion    -- Load last delivery into warehouse
 
   EXECUTE DataGeneration.spRunOneBuying -- run 'RunOne' buying process
 
