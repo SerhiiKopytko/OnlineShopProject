@@ -128,6 +128,7 @@
     <Build Include="StoredProcedures\Staging.spLoadingDataBCP.sql" />
     <Build Include="StoredProcedures\DataGeneration\Logs.spDataOperation.sql" />
     <Build Include="StoredProcedures\Master.spCreateNewPriceChangesVersion.sql" />
+    <Build Include="StoredProcedures\Master.spNewRevaluationProcess.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="OneRunScripts\OneRunScript.sql" />
