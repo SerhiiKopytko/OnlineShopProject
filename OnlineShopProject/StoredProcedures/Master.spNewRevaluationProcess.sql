@@ -38,9 +38,9 @@ BEGIN
 	
 		UPDATE ##CurrentPriceChanges
 		SET NewPrice = (SELECT CEILING(AVG(p.OldPrice))
-						FROM #CurrentPriceChanges AS p
+						FROM ##CurrentPriceChanges AS p
 						GROUP BY p.ProductID
-						HAVING p.ProductID = #CurrentPriceChanges.ProductID
+						HAVING p.ProductID = ##CurrentPriceChanges.ProductID
 						)
 
 
