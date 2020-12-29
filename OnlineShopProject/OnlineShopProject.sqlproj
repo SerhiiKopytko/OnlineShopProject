@@ -127,6 +127,7 @@
     <Build Include="StoredProcedures\Master.spBuyingNewOrderProcessWithSSIS.sql" />
     <Build Include="StoredProcedures\Staging.spLoadingDataBCP.sql" />
     <Build Include="StoredProcedures\DataGeneration\Logs.spDataOperation.sql" />
+    <Build Include="StoredProcedures\Master.spCreateNewPriceChangesVersion.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="OneRunScripts\OneRunScript.sql" />
