@@ -6,12 +6,15 @@ AS
 BEGIN
 	DECLARE
 		@RandProd INT,
-		@NewPrice SMALLMONEY
+		@NewPrice SMALLMONEY,
+		@NewVersion INT,
+		@CurrentDateTime DATETIME
 
 
 		SET @RandProd = (SELECT FLOOR(RAND()*(@MaxProd - @MinProd+1))+@MinProd)
 
-		CREATE TABLE #CurrentPriceChanges( 
+		DROP TABLE IF EXISTS ##CurrentPriceChanges  
+		CREATE TABLE  ##CurrentPriceChanges( 
 			ProductID INT,
 			OldPrice SMALLMONEY,
 			NewPrice SMALLMONEY,
@@ -19,7 +22,7 @@ BEGIN
 			NewVersion INT,
 			RevaluationDate DATETIME)
 
-		INSERT INTO #CurrentPriceChanges(ProductID, 
+		INSERT INTO ##CurrentPriceChanges(ProductID, 
 										 OldVersion,
 										 OldPrice)
 			SELECT ProductID    AS ProductID, 
@@ -33,12 +36,22 @@ BEGIN
 								)
 
 	
-		UPDATE #CurrentPriceChanges
+		UPDATE ##CurrentPriceChanges
 		SET NewPrice = (SELECT CEILING(AVG(p.OldPrice))
 						FROM #CurrentPriceChanges AS p
 						GROUP BY p.ProductID
 						HAVING p.ProductID = #CurrentPriceChanges.ProductID
 						)
+
+
+		EXECUTE [Master].[spCreateNewPriceChangesVersion]
+						@NewVersion      = @NewVersion OUTPUT,
+						@CurrentDateTime = @CurrentDateTime OUTPUT
+
+
+		UPDATE ##CurrentPriceChanges
+		SET NewVersion      = @NewVersion,
+			RevaluationDate = @CurrentDateTime 
 
 
 END;
