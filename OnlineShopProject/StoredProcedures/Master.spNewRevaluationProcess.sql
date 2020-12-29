@@ -1,7 +1,7 @@
 ﻿CREATE PROCEDURE [Master].[spNewRevaluationProcess]
 	@MinProd INT = 1,
 	@MaxProd INT = 2,
-	@percent INT = 15
+	@percent DECIMAL (4,2) = 15
 AS
 
 BEGIN
@@ -36,9 +36,10 @@ BEGIN
 									  ORDER BY NEWID()
 								)
 
-	
+		SET @percent = @percent/100 + 1 
+
 		UPDATE ##CurrentPriceChanges
-		SET NewPrice = (SELECT CEILING(AVG(p.OldPrice) * (1 + (@percent / 100)) )
+		SET NewPrice = (SELECT CEILING(AVG(p.OldPrice) * @percent)
 						FROM ##CurrentPriceChanges AS p
 						GROUP BY p.ProductID
 						HAVING p.ProductID = ##CurrentPriceChanges.ProductID
