@@ -77,9 +77,26 @@ BEGIN
 			FROM Staging.NewDeliveries
 			GROUP BY ProductID
 
+		/*Storing all history about the revaluation of the selected products 
+		  into [Master].[Revaluations] table */
 
+		INSERT INTO Master.Revaluations (ProductID, 
+										 OldPrice, 
+										 OldVersion) 
+			SELECT DISTINCT d.ProductID    AS ProductID, 
+							d.PricePerUnit AS OldPrice, 
+							w.StartVersion AS OldVersion
+			FROM Staging.NewDeliveries AS d
+				JOIN Master.WareHouses AS w 
+				ON d.ProductID = w.ProductID AND d.PricePerUnit = w.Price
+			WHERE w.EndVersion = @NewVersion
 
-
+		UPDATE Master.Revaluations
+		SET NewPrice = (SELECT Price 
+						FROM @NewPrice AS n
+						WHERE 1=1
+							AND Master.Revaluations.NewVersion = @NewVersion
+							AND n.ProdID = Master.Revaluations.ProductID)
 		
 
 
