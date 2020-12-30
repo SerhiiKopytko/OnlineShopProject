@@ -58,8 +58,8 @@ BEGIN
 		SET EndVersion = @NewVersion
 			OUTPUT Inserted.ProductID
 				  ,Inserted.Price
-			INTO Staging.NewDeliveries(ProductID, 
-									   PricePerUnit)
+			INTO Staging.NewDeliveries(ProductID 
+									   ,PricePerUnit)
 		WHERE ProductID IN (SELECT ProdID 
 							FROM @RandProdIDList)
 
@@ -70,8 +70,8 @@ BEGIN
 		IF @Action = 'down'
 			SET @percent = 1 - @percent/100 
 
-		INSERT INTO @NewPrice (ProdID, 
-							   Price)
+		INSERT INTO @NewPrice (ProdID 
+							   ,Price)
 			SELECT ProductID							 AS ProdID 
 				  ,CEILING(AVG(PricePerUnit) * @percent) AS Price
 			FROM Staging.NewDeliveries
@@ -80,12 +80,16 @@ BEGIN
 		/*Storing all history about the revaluation of the selected products 
 		  into [Master].[Revaluations] table */
 
-		INSERT INTO Master.Revaluations (ProductID, 
-										 OldPrice, 
-										 OldVersion) 
-			SELECT DISTINCT d.ProductID    AS ProductID, 
-							d.PricePerUnit AS OldPrice, 
-							w.StartVersion AS OldVersion
+		INSERT INTO Master.Revaluations (ProductID 
+										 ,OldPrice 
+										 ,OldVersion
+										 ,NewVersion
+										 ,RevaluationDate) 
+			SELECT DISTINCT d.ProductID       AS ProductID 
+							,d.PricePerUnit   AS OldPrice 
+							,w.StartVersion   AS OldVersion
+							,@NewVersion	  AS NewVersion
+							,@CurrentDateTime AS RevaluationDate
 			FROM Staging.NewDeliveries AS d
 				JOIN Master.WareHouses AS w 
 				ON d.ProductID = w.ProductID AND d.PricePerUnit = w.Price
