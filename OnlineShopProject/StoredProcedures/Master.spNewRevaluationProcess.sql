@@ -98,9 +98,12 @@ BEGIN
 		UPDATE Master.Revaluations
 		SET NewPrice = (SELECT Price 
 						FROM @NewPrice AS n
-						WHERE 1=1
-							AND Master.Revaluations.NewVersion = @NewVersion
-							AND n.ProdID = Master.Revaluations.ProductID)
+						WHERE n.ProdID = Master.Revaluations.ProductID)
+		FROM 
+			(SELECT * 
+			 FROM Master.Revaluations 
+			 WHERE NewVersion = @NewVersion) AS Selected
+		WHERE Master.Revaluations.RevaluationID = Selected.RevaluationID
 		
 
 
