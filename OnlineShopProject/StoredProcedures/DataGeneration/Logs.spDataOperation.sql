@@ -13,7 +13,8 @@ IF OBJECT_ID('Logs.Operations', 'U') IS NOT NULL
 			VALUES
 			('Initial Filling of the Database'),
 			('Restocking New Delivery Process'),
-			('Buying New Order Process')
+			('Buying New Order Process'),
+			('Revaluation of the products')
 
 		ALTER TABLE Logs.OperationRuns
 		ADD CONSTRAINT FK_LogsOperationRunsOperationID_LogsOperationsOperationID FOREIGN KEY (OperationID) REFERENCES Logs.Operations(OperationID)
