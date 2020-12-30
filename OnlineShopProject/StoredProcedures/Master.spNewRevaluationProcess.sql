@@ -6,10 +6,15 @@ AS
 
 BEGIN
 	DECLARE
+		@CurrentOperation INT = 4, --Revaluation of the products Process
 		@RandProd INT,
 		@NewPrice SMALLMONEY,
 		@NewVersion INT,
 		@CurrentDateTime DATETIME
+
+		-- Starting 'OperationRuns' process:
+		-- Creating new OperationRunID and creating new record in 'Logs.OperationEvent' table
+		EXECUTE Logs.spStartOperationRuns @CurrentOperation
 
 
 		SET @RandProd = (SELECT FLOOR(RAND()*(@MaxProd - @MinProd+1))+@MinProd)
@@ -54,6 +59,11 @@ BEGIN
 		UPDATE ##CurrentPriceChanges
 		SET NewVersion      = @NewVersion,
 			RevaluationDate = @CurrentDateTime 
+
+
+
+		-- Completing 'OperationRuns' process:
+		EXECUTE Logs.spCompletedOperationRuns
 
 
 END;
