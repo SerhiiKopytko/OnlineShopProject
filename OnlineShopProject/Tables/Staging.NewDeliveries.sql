@@ -19,6 +19,9 @@
 --------------------------
 --Staging Schema
 -------------------------
+--------------------------
+--Staging Schema
+-------------------------
 CREATE TABLE Staging.NewDeliveries(
 	DeliveryID INT NOT NULL IDENTITY(1,1),
 	ProductID INT,
