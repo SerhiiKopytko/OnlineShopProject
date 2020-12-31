@@ -19,6 +19,8 @@ AS
 BEGIN
 	BEGIN TRY
 		DECLARE @CurrentOperation INT = 4 --Revaluation of the products Process
+		DECLARE @EventProcName VARCHAR(250) = OBJECT_SCHEMA_NAME(@@PROCID)+'.'+OBJECT_NAME(@@PROCID)
+		DECLARE @RowCount INT = 0
 		DECLARE	@NewVersion INT
 		DECLARE	@CurrentDateTime DATETIME
 		DECLARE @RandProdIDList TABLE (ProdID INT)
@@ -31,6 +33,10 @@ BEGIN
 		/* Starting 'OperationRuns' process:
 			 Creating new OperationRunID and creating new record in 'Logs.OperationEvent' table*/
 		EXECUTE Logs.spStartOperationRuns @CurrentOperation
+
+
+		 -- logging start operation process
+		EXECUTE Logs.spStartOperation @EventProcName
 
 
 		/* Selecting @RandProd random number of unique products that will be evaluated 
@@ -105,6 +111,13 @@ BEGIN
 			 WHERE NewVersion = @NewVersion) AS Selected
 		WHERE Master.Revaluations.RevaluationID = Selected.RevaluationID
 		
+
+		-- EXECUTE Master.spLoadingWarehouse @CurrentVersion
+		EXECUTE Master.spLoadingWarehouse @NewVersion
+
+
+		-- Compliting operation process
+		EXECUTE Logs.spCompletedOperation @EventProcName, @RowCount, @NewVersion
 
 
 		-- Completing 'OperationRuns' process:
