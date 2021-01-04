@@ -2,9 +2,9 @@
 -- Author: Serhii Kopytko
 -- Create date:	2020/12/30
 -- Description:	General procedure that describe full revaluation process of products
--- Parameters: @orderID - Required. Order ID for new record
---			   @productID - Required. Product ID for Order
---			   @quantity - Required. quantity of product for Order
+-- Parameters: @MinProd, @MaxProd - Required. Minimum and maximum value of the number of unique products for revaluation
+--			   ,@percent - Required. The percentage by which the price of revalued products will be changed
+--			   ,@Action - Required. Can be 'up' to increase, or 'down' - to reduce the price
 -- Execution: On Demand
 -- ==========================================================================================
 
