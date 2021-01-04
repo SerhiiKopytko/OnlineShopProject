@@ -1,0 +1,2 @@
+﻿USE OnlineShop
+EXECUTE Master.spNewRevaluationProcess

@@ -129,10 +129,13 @@
     <Build Include="StoredProcedures\DataGeneration\Logs.spDataOperation.sql" />
     <Build Include="StoredProcedures\Master.spCreateNewPriceChangesVersion.sql" />
     <Build Include="StoredProcedures\Master.spNewRevaluationProcess.sql" />
+    <Build Include="Tables\Master.Revaluations.sql" />
+    <Build Include="Tables\Master.Revaluations.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="OneRunScripts\OneRunScript.sql" />
     <None Include="OneRunScripts\RunNewDeliveryProcess.sql" />
     <None Include="OneRunScripts\RunNewBuyingProcess.sql" />
+    <None Include="OneRunScripts\RunNewRevluationProcess.sql" />
   </ItemGroup>
 </Project>
