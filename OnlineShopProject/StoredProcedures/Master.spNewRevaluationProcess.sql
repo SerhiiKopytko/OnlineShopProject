@@ -66,8 +66,10 @@ BEGIN
 				  ,Inserted.Price
 			INTO Staging.NewDeliveries(ProductID 
 									   ,PricePerUnit)
-		WHERE ProductID IN (SELECT ProdID 
+		WHERE 1 = 1
+			AND ProductID IN (SELECT ProdID 
 							FROM @RandProdIDList)
+			AND EndVersion = 999999999
 
 		/* Create a new price as an average price of different deliveries appropriate product 
 		   adjusted by a certain amount of interest*/
@@ -111,6 +113,10 @@ BEGIN
 			 WHERE NewVersion = @NewVersion) AS Selected
 		WHERE Master.Revaluations.RevaluationID = Selected.RevaluationID
 		
+		UPDATE Staging.NewDeliveries
+		SET PricePerUnit = (SELECT Price 
+						FROM @NewPrice AS n
+						WHERE n.ProdID = Staging.NewDeliveries.ProductID)
 
 		-- EXECUTE Master.spLoadingWarehouse @CurrentVersion
 		EXECUTE Master.spLoadingWarehouse @NewVersion
