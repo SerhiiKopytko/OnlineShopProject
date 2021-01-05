@@ -113,6 +113,10 @@ BEGIN
 			 WHERE NewVersion = @NewVersion) AS Selected
 		WHERE Master.Revaluations.RevaluationID = Selected.RevaluationID
 		
+		UPDATE Staging.NewDeliveries
+		SET PricePerUnit = (SELECT Price 
+						FROM @NewPrice AS n
+						WHERE n.ProdID = Staging.NewDeliveries.ProductID)
 
 		-- EXECUTE Master.spLoadingWarehouse @CurrentVersion
 		EXECUTE Master.spLoadingWarehouse @NewVersion
