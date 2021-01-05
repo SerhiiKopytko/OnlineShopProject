@@ -2,7 +2,7 @@
 	ErrorID INT IDENTITY(1,1) NOT NULL,
 	OperationRunID INT NULL,
 	EventID INT NULL,
-	ErrortProcName VARCHAR(250) NULL,
+	ErrorProcName VARCHAR(250) NULL,
 	ErrorDataTime DATETIME NULL,
 	ErrorLine INT,
 	ErrorNumber INT NULL,
