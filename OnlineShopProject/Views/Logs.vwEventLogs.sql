@@ -12,6 +12,6 @@ SELECT e.EventID,
 	   e.EventDataTime,
 	   e.[User]
 FROM Logs.EventLogs AS e
-JOIN Logs.OperationsStatuses AS s ON s.OperationStatusID = e.EventStatusID
-JOIN Logs.OperationRuns AS r ON e.OperationRunID = r.OperationRunID
-JOIN Logs.Operations AS o ON o.OperationID = r.OperationID
+LEFT JOIN Logs.OperationsStatuses AS s ON s.OperationStatusID = e.EventStatusID
+LEFT JOIN Logs.OperationRuns AS r ON e.OperationRunID = r.OperationRunID
+LEFT JOIN Logs.Operations AS o ON o.OperationID = r.OperationID

@@ -5,14 +5,15 @@ AS
 BEGIN
 DECLARE
 @CurrentOperation INT = 2, --Restocking New Delivery Process
-@CurrentVersion INT
+@CurrentVersion INT,
+@CurrentRunID INT
 
 	EXECUTE Staging.spCreateNewDelivery           -- Generate new random delivery
 	EXECUTE Staging.spNewDeliveryIntoStagingTable -- Insert new random delivery into 'Staging.NewDeliveries' table
 
 	-- Starting 'OperationRuns' process:
 	-- Creating new OperationRunID and creating new record in 'Logs.OperationEvent' table
-		EXECUTE Logs.spStartOperationRuns @CurrentOperation 
+		EXECUTE Logs.spStartOperationRuns @CurrentOperation, @CurrentRunID = @CurrentRunID OUTPUT
 		
 		EXECUTE @CurrentVersion = [Master].spCreateNewLoadVersion
 		EXECUTE Master.spLoadingWarehouse @CurrentVersion

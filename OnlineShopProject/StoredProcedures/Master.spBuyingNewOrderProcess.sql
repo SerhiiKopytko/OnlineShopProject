@@ -6,14 +6,15 @@ BEGIN
 
 	DECLARE
 	  @CurrentOrderID INT,
-	  @CurrentOperation INT = 3 --Buying New Order Process
+	  @CurrentOperation INT = 3, --Buying New Order Process
+	  @CurrentRunID INT
 
 		EXECUTE [Staging].[spCreateNewOrder]           -- Generate new random order
 		EXECUTE [Staging].[spNewOrderIntoStagingTable] -- Insert new random order into '[Staging].[NewOrders]' table
 
 		-- Starting 'OperationRuns' process:
 		-- Creating new OperationRunID and creating new record in 'Logs.OperationEvent' table
-		EXECUTE Logs.spStartOperationRuns @CurrentOperation
+		EXECUTE Logs.spStartOperationRuns @CurrentOperation, @CurrentRunID = @CurrentRunID OUTPUT
 
 			EXECUTE Master.spLoadNewOrder  -- Load new order into '[Master].[Orders] and [Master].[OrderDetails]' tables
 		

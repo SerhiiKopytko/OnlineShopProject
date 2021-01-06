@@ -27,17 +27,25 @@ BEGIN
 		DECLARE @RandProdIDList TABLE (ProdID INT)
 		DECLARE @NewPrice TABLE (ProdID INT, Price SMALLMONEY)
 		DECLARE	@RandProd INT
+		DECLARE @CurrentRunID INT
+		DECLARE @CurrentIventID INT
+
+		--DECLARE @r decimal; --!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		
 		
 		-- SET NOCOUNT ON added to prevent extra result sets from
 		SET NOCOUNT ON;
 
 		/* Starting 'OperationRuns' process:
 			 Creating new OperationRunID and creating new record in 'Logs.OperationEvent' table*/
-		EXECUTE Logs.spStartOperationRuns @CurrentOperation
+		EXECUTE Logs.spStartOperationRuns @CurrentOperation, @CurrentRunID = @CurrentRunID OUTPUT
 
 
 		 -- logging start operation process
 		EXECUTE Logs.spStartOperation @EventProcName
+
+
+		--EXEC usp_divide 10, 0, @r output;  --!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
 		/* Selecting @RandProd random number of unique products that will be evaluated 
@@ -133,9 +141,40 @@ BEGIN
 	END TRY
 
 	BEGIN CATCH
+		-- Create a new Event about the error that occurred
+		DECLARE @ErrorMessage  NVARCHAR(4000)
+		DECLARE @ErrorSeverity INT 
+		DECLARE @ErrorState    INT
+		DECLARE @ErrorProcName VARCHAR(250)
 		
+
+		SET @ErrorMessage  = ERROR_MESSAGE()
+		SET @ErrorSeverity = ERROR_SEVERITY() 
+		SET @ErrorState    = ERROR_STATE()
+		SET @ErrorProcName = ERROR_PROCEDURE()
+
+		INSERT INTO Logs.EventLogs (OperationRunID
+									,EventProcName
+									,EventStatusID
+									,EventMessage)
+		SELECT 
+							@CurrentRunID AS OperationRunID
+						  ,@ErrorProcName AS EventProcName,
+			(SELECT OperationStatusID 
+			 FROM Logs.OperationsStatuses 
+			 WHERE Status = 'F')		  AS EventStatusID,
+			 'was failed'				  AS EventMessage		
 		
-		EXECUTE Logs.spErrorLog
+
+		SET @CurrentIventID = SCOPE_IDENTITY()
+		SET @CurrentDateTime = CURRENT_TIMESTAMP
+
+		EXECUTE Logs.spErrorLog @OperationRunID = @CurrentRunID
+								,@IventID = @CurrentIventID 
+								,@ErrorDateTime = @CurrentDateTime
+
+		RAISERROR (@ErrorMessage, @ErrorSeverity, @ErrorState)
 
 	END CATCH
 END;
+
