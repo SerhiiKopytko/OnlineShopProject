@@ -7,6 +7,8 @@ BEGIN
   DECLARE
   @RowCount INT
 
+ TRUNCATE TABLE Logs.ErrorLogs
+
   SELECT @RowCount = COUNT(*) FROM Logs.EventLogs
 
 	IF @RowCount > 0
