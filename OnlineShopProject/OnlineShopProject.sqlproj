@@ -131,7 +131,6 @@
     <Build Include="StoredProcedures\Master.spNewRevaluationProcess.sql" />
     <Build Include="Tables\Master.Revaluations.sql" />
     <Build Include="Tables\Master.Revaluations.sql" />
-    <Build Include="StoredProcedures\Logs.spErrorLog.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="OneRunScripts\OneRunScript.sql" />
