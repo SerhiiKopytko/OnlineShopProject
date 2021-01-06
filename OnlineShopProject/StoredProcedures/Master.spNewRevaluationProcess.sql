@@ -1,6 +1,7 @@
 ﻿-- =========================================================================================
 -- Author: Serhii Kopytko
 -- Create date:	2020/12/30
+-- Update date: 2021/01/06
 -- Description:	General procedure that describe full revaluation process of products
 -- Parameters: @MinProd, @MaxProd - Required. Minimum and maximum value of the number of unique products for revaluation
 --			   ,@percent - Required. The percentage by which the price of revalued products will be changed
@@ -132,6 +133,9 @@ BEGIN
 	END TRY
 
 	BEGIN CATCH
+		
+		
+		EXECUTE Logs.spErrorLog
 
 	END CATCH
 END;
